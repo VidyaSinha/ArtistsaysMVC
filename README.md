@@ -22,18 +22,31 @@ Secure sign-in and sign-up system for users to access personalized features.
 
 🚀 Tech Stack
 Frontend: HTML, CSS, JavaScript
+
 Backend: ASP.NET MVC Framework
+
 Database: SQL Server
+
 Design: Bootstrap for responsive UI
+
 📂 Pages Overview
 Home Page: Navigation hub with links to all major features.
+
 About: Provides information about the platform.
+
 Contact: Allows users to reach out with questions or feedback.
+
 Gallery View: Displays all uploaded artwork.
+
 Profile Page: Personal dashboard for users.
+
 Critiques Page: Dedicated space for reviewing and giving feedback on artwork.
+
 Marketplace: A section to book and purchase artwork.
+
 Suggestions: Collects user feedback for platform improvements.
+
 📊 Additional Information
+
 The project includes detailed documentation with flowcharts, DFDs, sample inputs, and screenshots of CRUD operations.
 The repository contains sample data and database configurations for easy setup.
