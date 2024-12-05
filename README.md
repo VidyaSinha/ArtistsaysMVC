@@ -20,6 +20,9 @@ Includes full Create, Read, Update, and Delete functionality for managing user p
 Authentication:
 Secure sign-in and sign-up system for users to access personalized features.
 
+CHECK OUT THE VIDEO : https://youtu.be/TeKfIkYxbos
+
+
 🚀 Tech Stack
 Frontend: HTML, CSS, JavaScript
 
