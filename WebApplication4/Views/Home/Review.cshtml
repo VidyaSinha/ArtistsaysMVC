@@ -1,0 +1,779 @@
+﻿@model IEnumerable<WebApplication4.Models.Review>
+
+@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* General Styles */
+
+    /* Form Styles */
+    form {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        margin: 20px auto;
+        max-width: 500px;
+        width: 100%;
+    }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+    label {
+        display: block;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    button {
+        background: linear-gradient(to left, #020000, #a81c51);
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+        button:hover {
+            background: linear-gradient(to right, #020000, #a81c51);
+        }
+
+    /* Table Styles */
+    .table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        color: #333;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .table thead {
+            background: linear-gradient(to left, #020000, #a81c51);
+            color: #ffffff;
+        }
+
+        .table th, .table td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+    body {
+        font-family: 'Fraunces', serif;
+        color: #fff;
+        background: #000;
+        letter-spacing: 0.5px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    p {
+        color: #ddd;
+        letter-spacing: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #ddd;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #a81c51;
+        }
+
+        a:focus {
+            text-decoration: none;
+            color: #a81c51;
+        }
+
+
+    .button {
+        background: #a81c51;
+        color: #fff;
+        display: inline-block;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .button:hover {
+            background: #fff;
+            color: #a81c51;
+        }
+
+            .button:hover i {
+                background: #a81c51 !important;
+                color: #fff !important;
+            }
+
+    .button_1 {
+        background: #252525;
+        color: #fff;
+        display: inline-block;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .button_1:hover {
+            background: #a81c51;
+            color: #fff;
+        }
+
+
+
+    .grid figure {
+        position: relative;
+        float: left;
+        overflow: hidden;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    figure.effect-jazz figcaption::after,
+    figure.effect-jazz img {
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+    }
+
+    figure.effect-jazz:hover img {
+        -webkit-transform: scale3d(1.05,1.05,1);
+        transform: scale3d(1.05,1.05,1);
+    }
+
+    .col_pink {
+        color: #a81c51;
+    }
+
+    .col_light {
+        color: rgba( 255,255,255,0.3);
+    }
+
+    .col_yell {
+        color: #f7ba01;
+    }
+
+    .col_dark {
+        color: #333;
+    }
+
+    .col_gray {
+        color: rgba( 207,161,179,1);
+    }
+
+    .bg_pink {
+        background: #a81c51;
+    }
+
+    .bg_gray {
+        background-color: #252525;
+    }
+
+    hr {
+        opacity: 1;
+        background-color: #323131;
+    }
+
+    .font_14 {
+        font-size: 14px;
+    }
+
+    .font_12 {
+        font-size: 12px;
+    }
+
+    .font_8 {
+        font-size: 8px;
+    }
+
+    .font_60 {
+        font-size: 60px;
+    }
+
+    .font_50 {
+        font-size: 50px;
+    }
+
+    .line {
+        height: 3px !important;
+        width: 80px;
+        background-color: #a81c51;
+    }
+
+    .line_1 {
+        height: 2px !important;
+        width: 40px;
+        background-color: #a81c51;
+    }
+
+    .hover_white:hover {
+        color: #fff !important;
+    }
+
+    .p_4 {
+        padding-top: 35px;
+        padding-bottom: 40px;
+    }
+
+    .icon_line:before {
+        display: inline-block;
+        width: 150px;
+        height: 1px;
+        background-color: #323131;
+        vertical-align: middle;
+        margin-right: 1%;
+        content: "";
+    }
+
+    .icon_line:after {
+        display: inline-block;
+        width: 150px;
+        height: 1px;
+        background-color: #323131;
+        vertical-align: middle;
+        margin-left: 1%;
+        content: "";
+    }
+
+    /header*/
+    .main_1 {
+        z-index: 2;
+    }
+
+    .navbar {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .navbar-brand .span_2 {
+        margin-left: 40px;
+        letter-spacing: 3px;
+    }
+
+    .navbar-brand {
+        line-height: 0.2em;
+    }
+
+    #header .nav-link {
+        font-size: 14px;
+        color: #fff;
+        padding-right: 15px;
+        padding-left: 15px;
+        text-transform: uppercase;
+    }
+
+        #header .nav-link:hover {
+            color: #a81c51;
+        }
+
+        #header .nav-link:focus {
+            color: #a81c51;
+        }
+
+    #header .active {
+        color: #a81c51;
+        font-weight: bold;
+    }
+
+
+    .drop_1 {
+        min-width: 220px;
+        padding: 10px;
+        border-radius: 0;
+        margin-top: 24px !important;
+    }
+
+        .drop_1 a {
+            font-size: 14px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+            .drop_1 a:hover {
+                background: none;
+                color: #a81c51;
+            }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 3;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .sticky {
+        top: -40px;
+        transform: translateY(40px);
+        transition: transform .3s;
+    }
+
+        .sticky .drop_1 {
+            margin-top: 14px !important;
+        }
+
+    /header_end*/
+
+
+    /common*/
+    .pages {
+        margin-top: 35px;
+    }
+
+    .pages ul li {
+        display: inline-block;
+    }
+
+        .pages ul li a {
+            display: block;
+            color: #fff;
+            margin: 0 2px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid #323131;
+        }
+
+            .pages ul li a:hover {
+                background: #a81c51;
+                border: 1px solid #a81c51;
+            }
+
+            .pages ul li a:hover {
+                color: #fff !important;
+            }
+
+    .act {
+        background: #a81c51 !important;
+        border: 1px solid #a81c51 !important;
+        color: #fff;
+    }
+
+    /* footer social icons */
+    ul.social-network {
+        list-style: none;
+        display: block;
+        margin-left: 0 !important;
+        padding: 0;
+    }
+
+        ul.social-network li {
+            display: inline-block;
+        }
+
+    /* footer social icons */
+    .social-network a.icoRss:hover {
+        background-color: #F56505;
+    }
+
+    .social-network a.icoFacebook:hover {
+        background-color: #3B5998;
+    }
+
+    .social-network a.icoTwitter:hover {
+        background-color: #33ccff;
+    }
+
+    .social-network a.icoGoogle:hover {
+        background-color: #BD3518;
+    }
+
+    .social-network a.icoVimeo:hover {
+        background-color: #0590B8;
+    }
+
+    .social-network a.icoLinkedin:hover {
+        background-color: #007bb7;
+    }
+
+        .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+        .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+            color: #fff;
+        }
+
+    a.socialIcon:hover, .socialHoverClass {
+        color: #44BCDD;
+    }
+
+    .social-circle li a {
+        display: inline-block;
+        position: relative;
+        margin: 0 auto 0 auto;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-circle li i {
+        margin: 0;
+        line-height: 40px;
+        text-align: center;
+    }
+
+    .social-circle li a:hover i, .triggeredHover {
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -ms--transform: rotate(360deg);
+        transform: rotate(360deg);
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+
+    .social-circle i {
+        color: #fff;
+        -webkit-transition: all 0.8s;
+        -moz-transition: all 0.8s;
+        -o-transition: all 0.8s;
+        -ms-transition: all 0.8s;
+        transition: all 0.8s;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #323131;
+    }
+
+    .form-select:focus {
+        box-shadow: none;
+        border-color: #323131;
+    }
+
+    .form-control {
+        border-color: #323131;
+        border-radius: 0;
+    }
+
+    .form-select {
+        border-color: #323131;
+        border-radius: 0;
+    }
+
+    .center_o1r {
+        padding-top: 10px;
+    }
+
+    /common_end*/
+
+    /footer*/
+    #footer {
+        border-top: 1px solid #323131;
+    }
+
+    .footer_1i1i {
+        padding: 2px;
+    }
+
+    .footer_1i ul li a {
+        font-size: 14px;
+        padding: 7px 15px 6px;
+        background: #252525;
+        margin: 0px 5px 10px 0px;
+    }
+
+        .footer_1i ul li a:hover {
+            background: #a81c51;
+            color: #fff;
+        }
+
+    /footer_end*/
+
+    /contact*/
+    .contact_1r ul li a {
+        background: #252525;
+        border-radius: 0;
+    }
+
+    .contact_2l1i .form-control {
+        background: #252525 !important;
+        color: #ddd;
+        height: 50px;
+    }
+
+    .contact_2l1i .form_text {
+        height: 160px;
+    }
+
+    /contact_end*/
+
+    /about_h*/
+    .about_h1r .form-control {
+        background-color: #252525;
+        border-color: #252525;
+        height: 53px;
+    }
+
+    .about_h1r .btn {
+        border-color: #a81c51;
+        padding: 15px 20px;
+    }
+
+        .about_h1r .btn:hover {
+            border-color: #fff;
+            background: #fff;
+            color: #a81c51;
+        }
+
+    /about_h_end*/
+
+    /***
+</style>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <!-- Left Section: Message and About Review -->
+    <div style="flex: 1; max-width: 45%; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+        @if (ViewBag.Message != null)
+        {
+            <p style="color: green; font-weight: bold;">@ViewBag.Message</p>
+        }
+        <h2>About Our Review System</h2>
+        <p>
+            Our platform encourages users to share their critiques and thoughts about artists and their works.
+            Your feedback helps artists improve and provides valuable insights for others to appreciate their art.
+            Submit your reviews with a rating and support your favorite artists today!
+        </p>
+        <h3>Respectful Guidelines for Submitting Critiques</h3>
+        <ul style="padding-left: 20px; line-height: 1.6;">
+            <li><strong>Be Constructive:</strong> Share your opinions with the goal of helping artists improve, not discouraging them.</li>
+            <li><strong>Respect Diversity:</strong> Understand that every artist has their unique style and perspective; celebrate this diversity in your feedback.</li>
+            <li><strong>Stay Professional:</strong> Use polite and professional language when writing your critique. Avoid offensive or discriminatory remarks.</li>
+            <li><strong>Focus on the Art:</strong> Provide insights into the art itself, like composition, color, technique, and emotion, instead of judging the artist personally.</li>
+            <li><strong>Give Suggestions:</strong> Offer actionable suggestions for improvement where applicable, rather than only pointing out flaws.</li>
+        </ul>
+    </div>
+
+    <!-- Right Section: Form -->
+    <div style="flex: 1; max-width: 45%; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+        <h2>Submit Your Critique</h2>
+        <h3>We’re happy to receive your feedback! ❤️</h3>
+        @using (Html.BeginForm("AddReview", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div style="margin-bottom: 15px;">
+                <label for="reviewerName">Reviewer Name:</label>
+                <input type="text" id="reviewerName" name="reviewerName" required style="width: 100%; padding: 10px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);" />
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="reviewText">Review Text:</label>
+                <textarea id="reviewText" name="reviewText" required style="width: 100%; padding: 10px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"></textarea>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="rating">Rating (1-5):</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required style="width: 100%; padding: 10px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);" />
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="placeId">Select Artist:</label>
+                <select id="placeId" name="placeId" required style="width: 100%; padding: 10px; border-radius: 5px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    <option value="">-- Select Artist --</option>
+                    @foreach (var place in ViewBag.Places as List<WebApplication4.Models.Place>)
+                    {
+                        <option value="@place.PlaceId">@place.PlaceName</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" style="padding: 10px 20px; border-radius: 5px; background-color: #007bff; color: white; border: none;">Submit Review</button>
+        }
+    </div>
+</div>
+
+<!-- Reviews Section -->
+<h3>All Reviews</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Reviewer Name</th>
+            <th>Review Text</th>
+            <th>Rating</th>
+            <th>Review Date</th>
+            <th>Artist Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var review in Model)
+            {
+                <tr>
+                    <td>@review.ReviewerName</td>
+                    <td>@review.ReviewText</td>
+                    <td>@review.Rating</td>
+                    <td>@review.ReviewDate.ToString("g")</td>
+                    <td>@review.PlaceName</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No reviews found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<section id="footer" class="pt-3 pb-3">
+    <div class="container-fluid">
+        <div class="row footer_1">
+            <div class="col-md-3">
+                <div class="footer_1i">
+                    <hr class="line_1">
+                    <h5 class="mb-3">ABOUT</h5>
+                    <p>At ArtistSays, we connect artists to critique and inspire each other. Our community supports artistic growth and includes a marketplace for showcasing and selling artwork. Join us today!</p>
+                    <p>Feel free to participate in contests held every week or month and get a chance to visit world's most famous art galleries for free.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer_1i">
+                    <hr class="line_1">
+                    <h5 class="mb-3"> RECENT WORKS</h5>
+                    <div class="footer_1i1 row">
+                        <div class="col-md-4 col-4 p-0">
+                            <div class="footer_1i1i">
+                                <div class="grid clearfix">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="#"> <img src="~/images/10.jpg" class="w-100" alt="abc"> </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-4 p-0">
+                            <div class="footer_1i1i">
+                                <div class="grid clearfix">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="#"> <img src="~/images/1.jpg" class="w-100" alt="abc"> </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-4 p-0">
+                            <div class="footer_1i1i">
+                                <div class="grid clearfix">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="#"> <img src="~/images/2.jpg" class="w-100" alt="abc"> </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer_1i1 row">
+                        <div class="col-md-4 col-4 p-0">
+                            <div class="footer_1i1i">
+                                <div class="grid clearfix">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="#"> <img src="~/images/13.jpg" class="w-100" alt="abc"> </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-4 p-0">
+                            <div class="footer_1i1i">
+                                <div class="grid clearfix">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="#"> <img src="~/images/5.jpg" class="w-100" alt="abc"> </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-4 p-0">
+                            <div class="footer_1i1i">
+                                <div class="grid clearfix">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="#"> <img src="~/images/12.jpg" class="w-100" alt="abc"> </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer_1i">
+                    <hr class="line_1">
+                    <h5 class="mb-3">TAG CLOUD</h5>
+                    <ul class="mb-0">
+                        <li class="d-inline-block"><a class="d-block" href="#">Analyze</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Audio</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Blog</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Business</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Creative</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Design</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Experiment</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">News</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Expertize</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Express</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Share</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Sustain</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Video</a></li>
+                        <li class="d-inline-block"><a class="d-block" href="#">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer_1i">
+                    <hr class="line_1">
+                    <h5 class="mb-3">UPCOMING EVENTS AND CHALLENGES</h5>
+                    <p class="font_14 mb-2"><a href="#">Collaborative Canvas Night</a></p>
+                    <h6 class="col_light font_14"><i class="fa fa-clock-o col_pink me-1"></i> May 18 <a class="col_light" href="#"><i class="fa fa-comment-o col_pink me-1 ms-3"></i> 25k</a></h6>
+                    <hr>
+                    <p class="font_14 mb-2">
+                        <a href="#">
+                            Brush & Chat: Artist Meet-Up
+                        </a>
+                    </p>
+                    <h6 class="col_light font_14"><i class="fa fa-clock-o col_pink me-1"></i> July 19 <a class="col_light" href="#"><i class="fa fa-comment-o col_pink me-1 ms-3"></i> 285k</a></h6>
+                    <hr>
+                    <p class="font_14 mb-2"><a href="#">30-Day Art Challenge</a></p>
+                    <h6 class="col_light font_14"><i class="fa fa-clock-o col_pink me-1"></i> June 17 <a class="col_light" href="#"><i class="fa fa-comment-o col_pink me-1 ms-3"></i>14k</a></h6>
+                </div>
+            </div>
+        </div>
+        <div class="row footer_2 mt-4 text-center">
+            <div class="col-md-12">
+                <ul>
+                    <li class="d-inline-block me-3 font_14"><a href="#">CONTACT</a></li>
+                    <li class="d-inline-block me-3 font_14"><a href="#">PRIVACY POLICY</a></li>
+                    <li class="d-inline-block me-3 font_14"><a href="#">TERMS OF USE</a></li>
+                    <li class="d-inline-block font_14"><a href="#">FAQ</a></li>
+                </ul>
+                <p class="mb-0">© 2024 ArtistSays . All Rights Reserved | Design by <a class="col_pink" href="http://www.templateonweb.com">Vidya Sinha</a></p>
+            </div>
+        </div>
+    </div>
+</section>

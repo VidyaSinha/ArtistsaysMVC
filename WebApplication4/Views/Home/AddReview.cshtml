@@ -1,0 +1,46 @@
+﻿@model WebApplication4.Models.Review
+
+@{
+    ViewBag.Title = "Add Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: linear-gradient(to bottom, #003366, #00BFFF);
+        min-height: 100vh;
+        margin: 0;
+        color: #ffffff;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-img-top {
+        width: 100%; /* Ensures the image takes full width of the card */
+        height: 300px; /* Set a fixed height */
+        object-fit: cover; /* Ensures the image covers the area without distortion */
+    }
+</style>
+<h2>Add Review</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReviewerName)
+        @Html.TextBoxFor(m => m.ReviewerName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReviewText)
+        @Html.TextAreaFor(m => m.ReviewText, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rating)
+        @Html.TextBoxFor(m => m.Rating, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

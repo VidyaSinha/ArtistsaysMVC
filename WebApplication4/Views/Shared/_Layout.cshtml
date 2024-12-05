@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✏️ ArtistSays - Make Art Better</title>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&display=swap" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+
+        body {
+            padding-top: 80px; /* Adjust based on navbar height */
+            font-family: 'Arial', sans-serif; /* Set a clean font for the page */
+            background-color: #f8f9fa; /* Light background for contrast */
+        }
+
+        /* Custom navbar styles */
+        .navbar {
+            background-color: #343a40; /* Dark background for the navbar */
+            border-bottom: 2px solid #f8f9fa; /* Light border for separation */
+            min-height: 80px;
+            /* Increased minimum height */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .navbar-brand {
+            font-size: 1.7rem;
+            font-family: 'Fraunces', serif;
+            margin-left: 50px; /* Larger brand font size */
+            font-weight: bold; /* Bold font for emphasis */
+            color: #f8f9fa; /* Light color for contrast */
+        }
+
+        .navbar-nav .nav-link {
+            padding: 15px 20px; /* Increased padding for nav links */
+            color: #f8f9fa; /* Light link color */
+            font-size: 1.1rem; /* Slightly larger font size */
+            border-radius: 5px; /* Rounded corners for links */
+            transition: background-color 0.3s; /* Smooth background transition */
+        }
+
+            .navbar-nav .nav-link:hover {
+                background-color: #495057; /* Darker background on hover */
+            }
+
+        .navbar-toggler {
+            border-color: #f8f9fa; /* Light border for the toggler */
+        }
+
+        .navbar-toggler-icon {
+            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="%23f8f9fa" stroke-width="2" d="M4 7h22M4 15h22M4 23h22" /%3E%3C/svg%3E'); /* Custom icon color */
+        }
+
+        /* Media query for smaller screens */
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            @Html.ActionLink("✏️ ArtistSays", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-0 mb-lg-0">
+                    @*<li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Gallery", "GalleryView", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Critiques", "Review", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("My profile", "BlogList", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Suggestion", "Suggestion", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Marketplace", "Transport", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+       
+    
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

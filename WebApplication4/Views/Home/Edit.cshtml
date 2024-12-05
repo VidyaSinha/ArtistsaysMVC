@@ -1,0 +1,112 @@
+﻿
+@model WebApplication4.Models.SuggestionModel
+
+@{
+    ViewBag.Title = "Edit Suggestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Body Styling */
+   /* Body Styling */
+body {
+    background: linear-gradient(to right, #020000, #a81c51);
+    min-height: 100vh;
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form Styles */
+form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #f9f9f9;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #a81c51;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #f9f9f9;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    outline: none;
+}
+
+/* Button Styles */
+button.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #a81c51;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button.btn:hover {
+    background-color: #8a1743;
+    transform: scale(1.05);
+}
+
+/* Headings */
+h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #f9f9f9;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+        }
+</style>
+<h2>Edit Suggestion</h2>
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div>
+        <label>Name:</label>
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+    </div>
+    <div>
+        <label>Email:</label>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+    </div>
+    <div>
+        <label>Suggestion:</label>
+        @Html.TextAreaFor(model => model.SuggestionText, new { @class = "form-control" })
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Update</button>
+}

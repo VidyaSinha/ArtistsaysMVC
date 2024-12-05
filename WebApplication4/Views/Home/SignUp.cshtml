@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Sign Up";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    body {
+        background: linear-gradient(to bottom, #003366, #00BFFF);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 2000px;
+        padding: 20px;
+        background-color: #2077b7;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+    h2 {
+        color: #FFD700;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        max-width: 2000px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 5px;
+        max-width: 2000px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-top: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        max-width: 2000px;
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+        max-width: 2000px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        background-color: #00c0ff;
+        border: none;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #00a3d1;
+            box-shadow: 0 5px 15px rgba(0, 163, 209, 0.5);
+        }
+    /* Footer Styles */
+    footer {
+        background-color: #002040; /* Darker blue for footer */
+        color: #f1f1f1;
+        padding: 40px 0;
+        margin-top: 20px;
+    }
+
+    .container1 {
+        max-width: 100%; /* Ensure the container takes the full width */
+        padding: 0; /* Remove any padding */
+        margin: 0 auto; /* Center the container if necessary */
+    }
+
+    footer h5 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    footer p, footer ul, footer li {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    footer a {
+        color: #f1f1f1;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            color: #00BFFF; /* Matches the gradient color */
+        }
+
+    footer .social-icons a {
+        margin-right: 10px;
+        color: #f1f1f1;
+        font-size: 18px;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Sign Up</h2>
+
+    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="Username">Username:</label>
+            <input type="text" name="Username" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Password">Password:</label>
+            <input type="password" name="Password" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" name="Email" class="form-control" required />
+        </div>
+        <div>
+            <button type="submit" class="btn-primary">Sign Up</button>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div>
+            <p>@ViewBag.Message</p>
+        </div>
+    }
+
+    <div class="form-footer">
+        <p>Already have an account? <a href="@Url.Action("SignIn", "Home")">Sign In</a></p>
+    </div>
+</div>
+
+<footer class="bg-dark text-light">
+    <div class="container footer">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>We are a travel agency dedicated to making your journeys unforgettable.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="text-light">Home</a></li>
+                    <li><a href="/blog/About" class="text-light">About Us</a></li>
+                    <li><a href="/blog/Contact" class="text-light">Contact</a></li>
+                    <li><a href="/blog/GalleryView" class="text-light">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <p>Email: info@travelagency.com</p>
+                <p>Phone: +123-456-7890</p>
+                <div>
+                    <a href="#" class="text-light mr-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light mr-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light mr-3"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
